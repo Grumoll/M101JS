@@ -30,7 +30,16 @@ function PostsDAO(db) {
 
         // now insert the post
         // hw3.2 TODO
-        posts.insert(post, callback);
+        posts.insert(post, function (err, result) {
+            "use strict";
+
+            if (!err) {
+                console.log("Inserted new post");
+                return callback(null, permalink);
+            }
+
+            return callback(err, null);
+        });
         //callback(Error("insertEntry NYI"), null);
     }
 
